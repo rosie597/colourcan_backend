@@ -146,7 +146,7 @@ export default {
       // console.log(value)
       this.$axios({
         method:'get',
-        url: this.urlName+'/data/workList',
+        url: this.domainName+'/data/workList',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded',
         },
