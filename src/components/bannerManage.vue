@@ -33,7 +33,7 @@
     				</div>
     				<div class="item">
     					<span>上传图片</span>
-    					<el-upload style="border: 1px dashed #d9d9d9;border-radius: 6px;margin-right:35%;" class="avatar-uploader" action="http://119.29.176.47:9001/qiniu/upload" :show-file-list="false":on-success="handleImgSuccess":before-upload="beforeImgUpload">
+    					<el-upload style="border: 1px dashed #d9d9d9;border-radius: 6px;margin-right:35%;" class="avatar-uploader" action="http://www.colourcan.net/qiniu/upload" :show-file-list="false":on-success="handleImgSuccess":before-upload="beforeImgUpload">
 	    					<img v-if="imageUrl" :src="imageUrl" class="avatar">
 	    					<i v-else class="el-icon-plus avatar-uploader-icon"></i>
 						</el-upload>

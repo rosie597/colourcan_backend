@@ -31,13 +31,13 @@ axios.interceptors.request.use(config=>{
         let arr = getCookie('token2').split('.')[1];
       if (JSON.parse(atob(arr)).exp - (Date.parse(new Date()) / 1000) < 0) {
           alert('请重新登录');
-          store.dispatch('exit'); 
+          store.dispatch('exit');
           router.replace('/')
-      } 
+      }
     }
-  };    
+  };
   if(store.state.token){
-      // 判断是否存在token，如果存在的话，则每个http header都加上token
+      // 判断是否存在token，如果存在的话，则每个http header都加上token，除了登陆
     config.headers.Authorization = `Bearer ${store.state.token}`;
   }
   return config;
@@ -46,7 +46,7 @@ axios.interceptors.request.use(config=>{
   console.log('请求失败');
   return Promise.reject(err);
 });
-
+Vue.config.devtools = true;
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

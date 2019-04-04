@@ -67,6 +67,7 @@ export default {
       }
     },
       submitDeleteWork(value){
+        console.log(this.workId,this.form.type.toString())
         this.$axios({
           method:'delete',
           url:this.domainName + '/work/soldout/'+this.workId,
@@ -74,9 +75,8 @@ export default {
               'Content-Type': 'application/json;charset=UTF-8',
           },
           data:{
-            reson:this.form.type.toString()
-          }
-              
+            reason:this.form.type.toString()
+          }    
         }).then((res)=>{
           if(res.data.code === 20000){
             this.$emit('closeDeleteVisible', false);

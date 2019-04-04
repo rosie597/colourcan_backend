@@ -4,15 +4,15 @@
             <h3 class="title">心芝兰后台管理系统登录</h3>
             <el-form-item prop="username">
                 <el-input type="text"  prefix-icon="el-icon-edit"
-                    v-model="ruleForm2.username" 
-                    auto-complete="off" 
+                    v-model="ruleForm2.username"
+                    auto-complete="off"
                     placeholder="用户名"style="width:90%;"
                 ></el-input>
             </el-form-item>
                 <el-form-item prop="password">
                     <el-input :type="passwordType"  prefix-icon='el-icon-setting'
-                        v-model="ruleForm2.password" 
-                        auto-complete="off" 
+                        v-model="ruleForm2.password"
+                        auto-complete="off"
                         placeholder="密码" @keyup.enter.native="login"style="width:90%;"
                     >
                      <i slot="suffix" v-if="HidePasssword" class="el-input__icon el-icon-view" @mousedown="changePass('show')" @mouseup="changePass('hide')" style="cursor:pointer;"></i>
@@ -65,23 +65,21 @@ export default {
 				},
 				headers: {
 					'Content-Type': 'application/json'
-				}  
+				}
 			}).then(res=>{
                 this.fullscreenLoading = false;
-				if(res.data.code === 20000){ 
+				if(res.data.code === 20000){
                     var token=res.data.data.token
                     var userData=res.data.data.admin.username
                     that.$store.dispatch('login',{token,userData});
-                    this.$router.push('/Home');
+                    this.$router.push('/home');
 				}else{
                     that.$message.error(res.data.message)
                 }
-			}).catch(error=>{   
-                console.log(error)
+			}).catch(error=>{
                 this.$message.error('网络错误');
                 this.fullscreenLoading = false;
-                this.$router.push('/Home');
-			})
+            })
         },
         changePass(name){
             if(name === 'show'){
@@ -90,7 +88,7 @@ export default {
             if(name === 'hide'){
                 this.passwordType = 'password'
             }
-        }		
+        }
     }
 };
 </script>
