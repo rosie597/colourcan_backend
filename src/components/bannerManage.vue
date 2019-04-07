@@ -33,14 +33,14 @@
     				</div>
     				<div class="item">
     					<span>上传图片</span>
-    					<el-upload style="border: 1px dashed #d9d9d9;border-radius: 6px;margin-right:35%;" class="avatar-uploader" action="http://www.colourcan.net/qiniu/upload" :show-file-list="false":on-success="handleImgSuccess":before-upload="beforeImgUpload">
+    					<el-upload style="border: 1px dashed #d9d9d9;border-radius: 6px;margin-right:35%;" class="avatar-uploader" action="http://www.colourcan.net/api/qiniu/upload" :show-file-list="false":on-success="handleImgSuccess":before-upload="beforeImgUpload">
 	    					<img v-if="imageUrl" :src="imageUrl" class="avatar">
 	    					<i v-else class="el-icon-plus avatar-uploader-icon"></i>
 						</el-upload>
     				</div>
     				<div class="item">
     					<span>跳转地址</span>
-    					<el-input type="textarea":rows="2"placeholder="请输入跳转地址"v-model="formData.url" style='width:80%;'></el-input>
+    					<el-input type="textarea":rows="2"placeholder="请输入跳转地址,如：http://www.baidu.com"v-model="formData.url" style='width:80%;'></el-input>
     				</div>
     			</form>
     		</div>
@@ -93,7 +93,7 @@ export default {
         },
         {
           label: '地址',
-          prop: 'url'
+          prop: 'redirectUrl'
         },
       ],
       tableData:[]
@@ -110,7 +110,6 @@ export default {
   				method:'get',
   				url:that.domainName+'/banner'
   			}).then((res)=>{
-  				console.log(res)
   				if(res.data.code==20000){
   					that.tableData=res.data.data
   				}else{
@@ -130,7 +129,6 @@ export default {
 		        	const tableData2=that.tableData.slice(0)
 		        	const currRow = tableData2.splice(oldIndex, 1)[0]
 		        	tableData2.splice(newIndex, 0, currRow)
-		        	console.log(that.tableData,tableData2)
 		        	for(let i in tableData2){
 		        		tableData2[i].weight=tableData2.length-i
 		        	}
@@ -144,7 +142,6 @@ export default {
 		        			bannerList:tableData2
 		        		}
 		        	}).then((res)=>{
-		        		console.log(res)
 		        		if(res.data.code==20000){
 		        			that.$message({
 		        				type:'success',
@@ -175,30 +172,28 @@ export default {
 			this.operateName=type
 			$('body').css('overflow','hidden');
 			if(res){
-				console.log(res)
-				this.formData.title=res.title,
-				this.formData.url=res.url,
+				this.formData.title=res.title
 				this.imageUrl=res.url
 				this.editId=res.id
 			}
 	    },
 	    confrim(){
-	    	console.log(this.formData.title,this.formData.url,this.editId)
 	    	var title=this.formData.title
 	    	var url=this.formData.url
 	    	var id=this.editId
 	    	var that=this
 	    	switch(this._type){
 	    		case '新增banner':{
-	    			if(!title||!url){
-	    				that.$message.error('请补充完整信息')
+	    			if(!title){
+	    				that.$message.error('请补充标题')
 	    			}else{
 	    				this.$axios({
 	    				method:'post',
 	    				url:that.domainName+'/banner',
 	    				data:{
 	    					title:title,
-	    					url:url
+	    					url:this.imageUrl,
+	    					redirectUrl:url
 	    				},
 	    				header:{
 	    					'Content-Type':	'application/json'
@@ -295,8 +290,7 @@ export default {
 	        });
         },
 	     handleImgSuccess(res, file) {
-	        this.imageUrl = URL.createObjectURL(file.raw);
-	        this.formData.url=res.data
+	        this.imageUrl = res.data;
 	      },
 	      beforeImgUpload(file) {
 	        const isJPG = file.type === 'image/jpeg';

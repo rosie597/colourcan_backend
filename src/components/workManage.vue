@@ -167,7 +167,7 @@ export default {
       console.log(this.getWorkmanage)
       let postData= {pageNum:this.getWorkmanage.pageNum,type:this.getWorkmanage.categoryValue,sort:this.getWorkmanage.TimesortValue,keyword:this.getWorkmanage.searchValue}
       this.$store.commit('setworkManage',postData)
-        this.$router.push({path: '/home/workDetail',
+        this.$router.push({path: '/backend/workDetail',
         query:{
         id: value.id ,
         name:this.$route.name,

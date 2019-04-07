@@ -17,12 +17,15 @@ export default new Router({
 	mode:'history',
 	  routes: [
 	    {
-	    	path:'/',
+	    	path:'/backend',
 	    	name:'login',
 	    	component:login
+	    },{
+	    	path:'/',
+	    	redirect:'/backend'
 	    },
 	    {
-	    	path:'/home',
+	    	path:'/backend',
 	    	name:'home',
 	    	component:home,
 	    	children:[
@@ -67,14 +70,14 @@ export default new Router({
 			      component: workData
 			    },
 			    {
-		          path:'/home',
-		          redirect:'/home/bannerManage' ,
+		          path:'/backend',
+		          redirect:'/backend/bannerManage' ,
 		        }
 	    	]
 	    },
 	    {
-	    	path:'/',
-	    	redirect:'/home/bannerManage'
+	    	path:'/backend',
+	    	redirect:'/backend/bannerManage'
 	    },
 	  ]
 })

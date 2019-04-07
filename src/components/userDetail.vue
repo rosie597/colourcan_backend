@@ -265,7 +265,7 @@ export default {
       })
     },
     preview:function (id) {
-      this.$router.push({path: '/home/workDetail', query: {id: id,name:this.$route.name}});
+      this.$router.push({path: '/backend/workDetail', query: {id: id,name:this.$route.name}});
     },
     // 用户浏览爱好
     browseHobbyGet:function () {

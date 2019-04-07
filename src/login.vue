@@ -72,7 +72,7 @@ export default {
                     var token=res.data.data.token
                     var userData=res.data.data.admin.username
                     that.$store.dispatch('login',{token,userData});
-                    this.$router.push('/home');
+                    this.$router.push('/backend/bannerManage');
 				}else{
                     that.$message.error(res.data.message)
                 }

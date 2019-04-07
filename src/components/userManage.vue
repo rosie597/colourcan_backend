@@ -161,7 +161,7 @@ export default {
   },
   methods:{
     viewUser:function (user) {
-      this.$router.push({path: '/home/userDetail', query:{user: user}});
+      this.$router.push({path: '/backend/userDetail', query:{user: user}});
     },
     parseStatic: function(obj){
       for (let key in obj){

@@ -19,19 +19,19 @@
             <el-submenu index="1">
               <template slot="title"><i class="el-icon-caret-bottom"></i>前台管理</template>
               <el-menu-item-group>
-                <el-menu-item index="/home/bannerManage">banner管理</el-menu-item>
-                <el-menu-item index="/home/tagManage">标签管理</el-menu-item>
+                <el-menu-item index="/backend/bannerManage">banner管理</el-menu-item>
+                <el-menu-item index="/backend/tagManage">标签管理</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
 
-            <el-menu-item index="/home/workManage">作品管理</el-menu-item>
-            <el-menu-item index="/home/userManage">用户管理</el-menu-item>
+            <el-menu-item index="/backend/workManage">作品管理</el-menu-item>
+            <el-menu-item index="/backend/userManage">用户管理</el-menu-item>
 
             <el-submenu index="4">
               <template slot="title"><i class="el-icon-caret-bottom"></i>数据中心</template>
               <el-menu-item-group>
-                <el-menu-item index="/home/userData">用户数据</el-menu-item>
-                <el-menu-item index="/home/workData">创作数据</el-menu-item>
+                <el-menu-item index="/backend/userData">用户数据</el-menu-item>
+                <el-menu-item index="/backend/workData">创作数据</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
 
